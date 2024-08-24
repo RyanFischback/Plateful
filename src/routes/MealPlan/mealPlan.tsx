@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./mealPlan.scss";
 
 function MealPlan() {
   // State for form fields
@@ -77,139 +76,150 @@ function MealPlan() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="meal-form">
-      <h2 className="form-title">Meal Plan Preferences</h2>
+    <div className="meal-plan-page">
+      <form onSubmit={handleSubmit} className="meal-form">
+        <div className="required-section">
+          <h2 className="form-title">Required Fields</h2>
 
-      {errors.length > 0 && (
-        <div className="error-messages">
-          {errors.map((error, index) => (
-            <p key={index} className="error-message">
-              {error}
-            </p>
-          ))}
+          {errors.length > 0 && (
+            <div className="error-messages">
+              {errors.map((error, index) => (
+                <p key={index} className="error-message">
+                  {error}
+                </p>
+              ))}
+            </div>
+          )}
+
+          <label className="form-label">
+            Dietary Preference:
+            <input
+              type="text"
+              value={dietaryPreference}
+              onChange={(e) => setDietaryPreference(e.target.value)}
+              className="form-input"
+              placeholder="e.g., Vegetarian"
+              required
+            />
+          </label>
+
+          <label className="form-label">
+            Meal Type:
+            <input
+              type="text"
+              value={mealType}
+              onChange={(e) => setMealType(e.target.value)}
+              className="form-input"
+              placeholder="e.g., Breakfast, Lunch"
+              required
+            />
+          </label>
+
+          <label className="form-label">
+            Meals Per Day:
+            <input
+              type="number"
+              value={mealsPerDay}
+              onChange={(e) => setMealsPerDay(parseInt(e.target.value))}
+              className="form-input"
+              min="1"
+              required
+            />
+          </label>
+
+          <label className="form-label">
+            Daily Caloric Goal:
+            <input
+              type="number"
+              value={calories}
+              onChange={(e) => setCalories(e.target.value)}
+              className="form-input"
+              placeholder="e.g., 2000"
+              required
+            />
+          </label>
         </div>
-      )}
 
-      <label className="form-label">
-        Dietary Preference:
-        <input
-          type="text"
-          value={dietaryPreference}
-          onChange={(e) => setDietaryPreference(e.target.value)}
-          className="form-input"
-          placeholder="e.g., Vegetarian, Vegan"
-          required
-        />
-      </label>
+        <div className="optional-section">
+          <h2 className="form-title">Optional Fields</h2>
 
-      <label className="form-label">
-        Allergies/Intolerances:
-        <input
-          type="text"
-          value={allergies}
-          onChange={(e) => setAllergies(e.target.value)}
-          className="form-input"
-          placeholder="e.g., Gluten, Dairy"
-        />
-      </label>
+          <label className="form-label">
+            Allergies/Intolerances:
+            <input
+              type="text"
+              value={allergies}
+              onChange={(e) => setAllergies(e.target.value)}
+              className="form-input"
+              placeholder="e.g., Gluten, Dairy"
+            />
+          </label>
 
-      <label className="form-label">
-        Meal Type:
-        <input
-          type="text"
-          value={mealType}
-          onChange={(e) => setMealType(e.target.value)}
-          className="form-input"
-          placeholder="e.g., Breakfast, Lunch"
-          required
-        />
-      </label>
+          <label className="form-label">
+            Cuisine Preference:
+            <input
+              type="text"
+              value={cuisinePreference}
+              onChange={(e) => setCuisinePreference(e.target.value)}
+              className="form-input"
+              placeholder="e.g., Italian, Indian"
+            />
+          </label>
 
-      <label className="form-label">
-        Meals Per Day:
-        <input
-          type="number"
-          value={mealsPerDay}
-          onChange={(e) => setMealsPerDay(parseInt(e.target.value))}
-          className="form-input"
-          min="1"
-          required
-        />
-      </label>
+          <label className="form-label">
+            Budget Constraints:
+            <input
+              type="text"
+              value={budget}
+              onChange={(e) => setBudget(e.target.value)}
+              className="form-input"
+              placeholder="e.g., Low budget"
+            />
+          </label>
 
-      <label className="form-label">
-        Daily Caloric Goal:
-        <input
-          type="number"
-          value={calories}
-          onChange={(e) => setCalories(e.target.value)}
-          className="form-input"
-          placeholder="e.g., 2000"
-          required
-        />
-      </label>
+          <label className="form-label">
+            Cooking Time Available (minutes):
+            <input
+              type="number"
+              value={cookingTime}
+              onChange={(e) => setCookingTime(e.target.value)}
+              className="form-input"
+              placeholder="e.g., 30"
+            />
+          </label>
 
-      <label className="form-label">
-        Cuisine Preference:
-        <input
-          type="text"
-          value={cuisinePreference}
-          onChange={(e) => setCuisinePreference(e.target.value)}
-          className="form-input"
-          placeholder="e.g., Italian, Indian"
-        />
-      </label>
+          <label className="form-label">
+            Ingredients on Hand:
+            <input
+              type="text"
+              value={ingredientsOnHand}
+              onChange={(e) => setIngredientsOnHand(e.target.value)}
+              className="form-input"
+              placeholder="e.g., Chicken, Rice"
+            />
+          </label>
 
-      <h3 className="optional-fields-title">Optional Fields</h3>
-
-      <label className="form-label">
-        Budget Constraints:
-        <input
-          type="text"
-          value={budget}
-          onChange={(e) => setBudget(e.target.value)}
-          className="form-input"
-          placeholder="e.g., Low budget"
-        />
-      </label>
-
-      <label className="form-label">
-        Cooking Time Available (minutes):
-        <input
-          type="number"
-          value={cookingTime}
-          onChange={(e) => setCookingTime(e.target.value)}
-          className="form-input"
-          placeholder="e.g., 30"
-        />
-      </label>
-
-      <label className="form-label">
-        Ingredients on Hand:
-        <input
-          type="text"
-          value={ingredientsOnHand}
-          onChange={(e) => setIngredientsOnHand(e.target.value)}
-          className="form-input"
-          placeholder="e.g., Chicken, Rice"
-        />
-      </label>
-
-      <label className="form-label">
-        Specific Exclusions:
-        <input
-          type="text"
-          value={exclusions}
-          onChange={(e) => setExclusions(e.target.value)}
-          className="form-input"
-          placeholder="e.g., Dislike tomatoes"
-        />
-      </label>
-
+          <label className="form-label">
+            Specific Exclusions:
+            <input
+              type="text"
+              value={exclusions}
+              onChange={(e) => setExclusions(e.target.value)}
+              className="form-input"
+              placeholder="e.g., Nuts, Shellfish"
+            />
+          </label>
+        </div>
+      </form>
       <button type="submit" className="form-button">
         Generate Meal Plan
       </button>
-    </form>
+      <button
+        className="fab"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      >
+        ↑
+      </button>
+    </div>
   );
 }
 

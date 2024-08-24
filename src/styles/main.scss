@@ -1,0 +1,181 @@
+// Ensure the body covers the entire page without background image
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+// Remove background image from the body
+body {
+  margin: 0;
+}
+
+// Layout styles
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+// Navbar styles
+.navbar {
+  background: linear-gradient(135deg, #28a745, #218838);
+  padding: 15px 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000; // Ensure navbar is above other content
+
+  nav {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: space-around;
+
+      li {
+        margin: 0;
+
+        a {
+          color: #fff;
+          text-decoration: none;
+          font-size: 18px;
+          padding: 10px 15px;
+          border-radius: 5px;
+          transition: background-color 0.3s ease, color 0.3s ease;
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Home page styles
+.home {
+  // Apply background image only to home page
+  background: url("../assets/images/background.jpg") no-repeat center center
+    fixed;
+  background-size: cover;
+  min-height: 100vh; // Ensure home covers the full viewport height
+
+  .hero {
+    color: #fff;
+    text-align: center;
+    padding: 100px 20px;
+    border-radius: 0 0 20px 20px;
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 24px;
+      margin: 0;
+    }
+  }
+}
+
+// Meal Plan page styles
+.meal-plan-page {
+  background: url("../assets/images/meal-planner.jpg") no-repeat center center
+    fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; // Ensure layout stacks vertically
+  align-items: center;
+  padding: 20px;
+
+  .meal-form {
+    background-color: rgba(
+      255,
+      255,
+      255,
+      0.95
+    ); // Slightly opaque background for readability
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    max-width: 800px; // Adjust as needed
+    width: 100%;
+    display: flex;
+    flex-direction: row; // Align sections side by side
+    gap: 20px;
+
+    .required-section,
+    .optional-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-title {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .form-label {
+      margin-bottom: 15px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-input {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .error-messages {
+      margin-bottom: 15px;
+      color: red;
+    }
+
+    .error-message {
+      margin-bottom: 5px;
+    }
+  }
+  .form-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #218838;
+    }
+  }
+
+  .fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #218838;
+    }
+  }
+}
