@@ -1,11 +1,15 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import MealPlan from "./routes/MealPlan/mealPlan";
 
-const App: React.FC = () => {
+function App() {
   return (
-    <div>
-      <h1>Hello, Plateful!</h1>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MealPlan />} />
+      </Routes>
+    </Router>
   );
-};
+}
 
 export default App;
