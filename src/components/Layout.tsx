@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../styles/main.scss"; // Import SCSS for styling
+import "../styles/common.scss"; // Import SCSS for styling
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [darkMode, setDarkMode] = useState(
+    document.body.getAttribute("data-theme") === "dark"
+  );
+
+  useEffect(() => {
+    document.body.setAttribute("data-theme", darkMode ? "dark" : "light");
+  }, [darkMode]);
+
+  const handleToggle = () => {
+    setDarkMode((prevMode) => !prevMode);
+  };
+
   return (
     <div className="layout">
       <header className="navbar">
@@ -16,6 +28,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             </li>
           </ul>
         </nav>
+        <div
+          className="theme-toggle"
+          data-theme={darkMode ? "dark" : "light"}
+          onClick={handleToggle}
+        ></div>
       </header>
       <main className="content">{children}</main>
     </div>

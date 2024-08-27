@@ -1,44 +1,38 @@
 import React, { useState } from "react";
 
+const MealTypeOptions = ["Breakfast", "Lunch", "Dinner", "Snack"];
+const DietaryPreferenceOptions = ["Vegetarian", "Vegan", "Gluten-Free", "None"];
+
 function MealPlan() {
-  // State for form fields
-  const [dietaryPreference, setDietaryPreference] = useState("");
-  const [allergies, setAllergies] = useState("");
-  const [mealType, setMealType] = useState("");
-  const [mealsPerDay, setMealsPerDay] = useState(3);
-  const [calories, setCalories] = useState("");
-  const [cuisinePreference, setCuisinePreference] = useState("");
-  const [budget, setBudget] = useState("");
-  const [cookingTime, setCookingTime] = useState("");
-  const [ingredientsOnHand, setIngredientsOnHand] = useState("");
-  const [exclusions, setExclusions] = useState("");
-
-  // State for error messages
+  const [dietaryPreference, setDietaryPreference] = useState<string>("");
+  const [allergies, setAllergies] = useState<string>("");
+  const [mealType, setMealType] = useState<string>("");
+  const [mealsPerDay, setMealsPerDay] = useState<number>(3);
+  const [calories, setCalories] = useState<string>("");
+  const [cuisinePreference, setCuisinePreference] = useState<string>("");
+  const [budget, setBudget] = useState<string>("");
+  const [cookingTime, setCookingTime] = useState<string>("");
+  const [ingredientsOnHand, setIngredientsOnHand] = useState<string>("");
+  const [exclusions, setExclusions] = useState<string>("");
   const [errors, setErrors] = useState<string[]>([]);
+  const [mealPlan, setMealPlan] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  // Validate form fields
   const validateFields = () => {
     const newErrors: string[] = [];
-
     if (!dietaryPreference.trim())
       newErrors.push("Dietary Preference is required.");
     if (!mealType.trim()) newErrors.push("Meal Type is required.");
-    if (!mealsPerDay || mealsPerDay < 1)
-      newErrors.push("Meals Per Day must be at least 1.");
+    if (mealsPerDay < 1) newErrors.push("Meals Per Day must be at least 1.");
     if (!calories || parseInt(calories) <= 0)
       newErrors.push("Calories must be a positive number.");
-
     setErrors(newErrors);
     return newErrors.length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Validate the form
+  const handleSubmit = async () => {
     if (!validateFields()) return;
-
-    // Prepare data
+    setLoading(true);
     const mealPlanData = {
       dietaryPreference,
       allergies,
@@ -53,8 +47,7 @@ function MealPlan() {
     };
 
     try {
-      // Replace with your API request logic
-      const response = await fetch("/api/generateMealPlan", {
+      const response = await fetch("/api/openai/generateMealPlan", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,25 +55,21 @@ function MealPlan() {
         body: JSON.stringify(mealPlanData),
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to generate meal plan.");
-      }
-
+      if (!response.ok) throw new Error("Failed to generate meal plan.");
       const result = await response.json();
-      console.log("Generated meal plan:", result);
-
-      // Handle the result (e.g., display the generated plan to the user)
+      setMealPlan(result);
     } catch (error: any) {
       console.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="meal-plan-page">
-      <form onSubmit={handleSubmit} className="meal-form">
+      <form onSubmit={(e) => e.preventDefault()} className="meal-form">
         <div className="required-section">
           <h2 className="form-title">Required Fields</h2>
-
           {errors.length > 0 && (
             <div className="error-messages">
               {errors.map((error, index) => (
@@ -90,31 +79,38 @@ function MealPlan() {
               ))}
             </div>
           )}
-
           <label className="form-label">
             Dietary Preference:
-            <input
-              type="text"
+            <select
               value={dietaryPreference}
               onChange={(e) => setDietaryPreference(e.target.value)}
               className="form-input"
-              placeholder="e.g., Vegetarian"
               required
-            />
+            >
+              <option value="">Select</option>
+              {DietaryPreferenceOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
           </label>
-
           <label className="form-label">
             Meal Type:
-            <input
-              type="text"
+            <select
               value={mealType}
               onChange={(e) => setMealType(e.target.value)}
               className="form-input"
-              placeholder="e.g., Breakfast, Lunch"
               required
-            />
+            >
+              <option value="">Select</option>
+              {MealTypeOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
           </label>
-
           <label className="form-label">
             Meals Per Day:
             <input
@@ -126,7 +122,6 @@ function MealPlan() {
               required
             />
           </label>
-
           <label className="form-label">
             Daily Caloric Goal:
             <input
@@ -142,7 +137,6 @@ function MealPlan() {
 
         <div className="optional-section">
           <h2 className="form-title">Optional Fields</h2>
-
           <label className="form-label">
             Allergies/Intolerances:
             <input
@@ -153,7 +147,6 @@ function MealPlan() {
               placeholder="e.g., Gluten, Dairy"
             />
           </label>
-
           <label className="form-label">
             Cuisine Preference:
             <input
@@ -164,7 +157,6 @@ function MealPlan() {
               placeholder="e.g., Italian, Indian"
             />
           </label>
-
           <label className="form-label">
             Budget Constraints:
             <input
@@ -175,7 +167,6 @@ function MealPlan() {
               placeholder="e.g., Low budget"
             />
           </label>
-
           <label className="form-label">
             Cooking Time Available (minutes):
             <input
@@ -186,7 +177,6 @@ function MealPlan() {
               placeholder="e.g., 30"
             />
           </label>
-
           <label className="form-label">
             Ingredients on Hand:
             <input
@@ -197,7 +187,6 @@ function MealPlan() {
               placeholder="e.g., Chicken, Rice"
             />
           </label>
-
           <label className="form-label">
             Specific Exclusions:
             <input
@@ -209,10 +198,24 @@ function MealPlan() {
             />
           </label>
         </div>
+        <button
+          type="button"
+          className="form-button"
+          onClick={handleSubmit}
+          disabled={loading}
+        >
+          {loading ? <div className="spinner"></div> : "Generate Meal Plan"}
+        </button>
       </form>
-      <button type="submit" className="form-button">
-        Generate Meal Plan
-      </button>
+
+      {mealPlan && (
+        <div className="meal-plan-result">
+          <h2 className="result-title">Your Meal Plan</h2>
+          <div className="result-content">
+            <p>{mealPlan}</p>
+          </div>
+        </div>
+      )}
       <button
         className="fab"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

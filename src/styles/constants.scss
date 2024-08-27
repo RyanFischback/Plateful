@@ -1,0 +1,81 @@
+// Base color variables
+:root {
+  // Primary colors
+  --primary-color: #007bff;
+  --primary-dark-color: #0056b3;
+
+  // Background colors
+  --background-light: #ffffff;
+  --background-dark: #121212;
+
+  // Text colors
+  --text-color-light: #000000;
+  --text-color-dark: #ffffff;
+
+  // Toggle switch colors
+  --toggle-bg-light: #ccc;
+  --toggle-thumb-light: #ffffff;
+  --toggle-bg-dark: #333;
+  --toggle-thumb-dark: #000000;
+
+  // Button colors
+  --button-bg: #007bff;
+  --button-bg-hover: #0056b3;
+  --button-bg-disabled: #ccc;
+  --button-text: #ffffff;
+
+  // Navbar colors
+  --navbar-bg: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--primary-dark-color)
+  );
+  --navbar-text: #ffffff;
+
+  // Form colors
+  --form-bg: rgba(255, 255, 255, 0.9);
+  --form-border: #ddd;
+  --form-error-bg: #fdd;
+  --form-error-text: #f00;
+}
+
+// Dark mode color variables
+[data-theme="dark"] {
+  // Primary colors
+  --primary-color: #007bff;
+  --primary-dark-color: #0056b3;
+
+  // Background colors
+  --background-light: #121212;
+  --background-dark: #ffffff;
+
+  // Text colors
+  --text-color-light: #ffffff;
+  --text-color-dark: #000000;
+
+  // Toggle switch colors
+  --toggle-bg-light: #333;
+  --toggle-thumb-light: #000000;
+  --toggle-bg-dark: #ccc;
+  --toggle-thumb-dark: #ffffff;
+
+  // Button colors
+  --button-bg: #007bff;
+  --button-bg-hover: #0056b3;
+  --button-bg-disabled: #ccc;
+  --button-text: #ffffff;
+
+  // Navbar colors
+  --navbar-bg: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--primary-dark-color)
+  );
+  --navbar-text: #ffffff;
+
+  // Form colors
+  --form-bg: rgba(255, 255, 255, 0.9);
+  --form-border: #ddd;
+  --form-error-bg: #fdd;
+  --form-error-text: #f00;
+}

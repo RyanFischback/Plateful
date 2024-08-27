@@ -25,8 +25,8 @@ export const generateMealPlan = async (req: Request, res: Response) => {
       exclusions,
     } = req.body;
 
-    // Combine the user input into a single string (combinedContent)
-    const combinedContent = `
+    // Prepare the user input content
+    const userInput = `
       Dietary Preference: ${dietaryPreference || "None"}
       Allergies/Intolerances: ${allergies || "None"}
       Meal Type: ${mealType || "Not specified"}
@@ -45,10 +45,16 @@ export const generateMealPlan = async (req: Request, res: Response) => {
       messages: [
         {
           role: "system",
-          content:
-            "You are an AI-powered meal planner. Your task is to generate personalized meal plans based on user input. The user will provide preferences such as dietary restrictions, allergies, meal types, caloric goals, and other optional details. You should prioritize generating meal plans that are nutritious, easy to prepare, and align with the user's input. When generating meal plans: 1. Provide a variety of meals for different times of the day (e.g., breakfast, lunch, dinner). 2. Ensure that meals follow dietary restrictions and allergies provided by the user. 3. Adjust portion sizes and ingredient choices to meet the user’s caloric goal. 4. Suggest alternatives or optional ingredients if specific preferences or exclusions are mentioned. 5. Incorporate budget and time constraints where applicable.",
+          content: `You are an advanced AI meal planner. Your goal is to generate highly personalized meal plans based on detailed user input. Utilize all provided information to create meal plans that are not only nutritious but also tailored to the user’s specific needs and preferences. Here are the guidelines for generating the meal plans:
+
+            1. **Prioritize User Input**: Incorporate all aspects of the user’s input, including dietary preferences, allergies, meal types, caloric goals, and any other provided details.
+            2. **Variety and Completeness**: Offer a variety of meals suitable for different times of the day (breakfast, lunch, dinner). Ensure the meal plans are comprehensive and balanced.
+            3. **Personalization**: Ensure that the meal plans respect dietary restrictions and allergies. Adjust portion sizes and ingredients to meet caloric goals.
+            4. **Flexibility**: Suggest alternatives or optional ingredients if the user mentions specific preferences or exclusions.
+            5. **Constraints**: Incorporate budget constraints and cooking time where applicable, providing options that fit within these constraints.
+            6. **Clarity and Detail**: Provide clear and detailed meal plans with ingredients and preparation steps if needed. Aim for simplicity and ease of preparation, keeping the user’s cooking skills in mind.`,
         },
-        { role: "user", content: combinedContent },
+        { role: "user", content: userInput },
       ],
       max_tokens: 3000,
     });
