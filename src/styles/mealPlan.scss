@@ -1,7 +1,4 @@
 .meal-plan-page {
-  background: url("../assets/images/meal-planner.jpg") no-repeat center center
-    fixed;
-  background-size: cover;
   padding: 2rem;
   background-color: var(--background-color);
 
@@ -18,12 +15,18 @@
       margin-bottom: 0.5rem;
     }
 
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
     .required-section,
     .optional-section {
       border: 1px solid var(--form-border);
       padding: 1rem;
       border-radius: 0.5rem;
-      margin-bottom: 1rem;
     }
 
     .form-label {
@@ -70,15 +73,12 @@
       width: 100%;
       padding: 0.75rem;
       border: none;
-      border-radius: 0.5rem;
-      background-color: var(--button-bg);
+      border-radius: 0.25rem;
+      background-color: var(--primary-color);
       color: var(--button-text);
-      cursor: pointer;
       font-size: 1.25rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      margin-top: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
 
       &:hover {
         background-color: var(--button-bg-hover);
@@ -87,7 +87,6 @@
       &:active {
         transform: scale(0.98);
       }
-
       &:disabled {
         background-color: var(--button-bg-disabled);
         cursor: not-allowed;
@@ -112,5 +111,48 @@
         transform: rotate(360deg);
       }
     }
+
+    .error-messages {
+      color: red;
+      margin-bottom: 1rem;
+    }
+
+    .error-message {
+      margin: 0;
+    }
+
+    .meal-plan-result {
+      margin-top: 2rem;
+      padding: 1rem;
+      background-color: var(--result-bg);
+      border-radius: 0.5rem;
+      border: 1px solid var(--result-border);
+    }
+
+    .result-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .result-content {
+      font-size: 1rem;
+    }
+  }
+
+  .fab {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
 }

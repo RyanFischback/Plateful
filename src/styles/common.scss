@@ -1,8 +1,12 @@
 // Basic styling for the page
 html,
 body {
-  height: 100%;
   margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
   background-color: var(--background-light);
   color: var(--text-color-light);
   font-family: Arial, sans-serif;
@@ -19,6 +23,10 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+.content {
+  flex: 1;
 }
 
 // Navbar styles
@@ -96,31 +104,5 @@ body {
 
   &[data-theme="dark"]::before {
     transform: translateX(30px);
-  }
-}
-
-// Home page styles
-.home {
-  // Apply background image only to home page
-  background: url("../assets/images/background.jpg") no-repeat center center
-    fixed;
-  background-size: cover;
-  min-height: 100vh; // Ensure home covers the full viewport height
-
-  .hero {
-    color: var(--text-color-light);
-    text-align: center;
-    padding: 100px 20px;
-    border-radius: 0 0 20px 20px;
-
-    h1 {
-      font-size: 48px;
-      margin-bottom: 20px;
-    }
-
-    p {
-      font-size: 24px;
-      margin: 0;
-    }
   }
 }

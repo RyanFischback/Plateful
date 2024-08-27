@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../styles/common.scss"; // Import SCSS for styling
+import Footer from "./Footer";
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [darkMode, setDarkMode] = useState(
@@ -35,6 +35,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         ></div>
       </header>
       <main className="content">{children}</main>
+      <Footer />
     </div>
   );
 };
