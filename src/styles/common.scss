@@ -1,21 +1,9 @@
-// Basic styling for the page
-html,
 body {
+  background-color: var(--background-color);
+  color: var(--text-color);
   margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  background-color: var(--background-light);
-  color: var(--text-color-light);
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-
-  &[data-theme="dark"] {
-    background-color: var(--background-dark);
-    color: var(--text-color-dark);
-  }
 }
 
 // Layout styles
@@ -35,8 +23,8 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
-  background: var(--navbar-bg);
-  color: var(--navbar-text);
+  background: var(--navbar-background);
+  color: var(--text-color);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 1000;
 
@@ -53,7 +41,7 @@ body {
   }
 
   nav ul li a {
-    color: var(--navbar-text);
+    color: var(--text-color);
     text-decoration: none;
     font-size: 18px;
     padding: 10px 15px;
@@ -65,44 +53,78 @@ body {
     background-color: rgba(255, 255, 255, 0.2);
   }
 }
-
-// Dark mode toggle switch styles
-.theme-toggle {
-  background: var(--toggle-bg-light);
-  border: 1px solid var(--toggle-bg-light);
-  border-radius: 20px;
-  position: relative;
-  width: 60px;
-  height: 30px;
-  cursor: pointer;
+/* Slider Styles */
+.slider-container {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  transition: background 0.3s ease;
+}
 
-  &[data-theme="dark"] {
-    background: var(--toggle-bg-dark);
-    border-color: var(--toggle-bg-dark);
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--text-color);
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
   }
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 24px;
-    height: 24px;
-    background: var(--toggle-thumb-light);
-    border-radius: 50%;
-    transition: transform 0.3s ease, background 0.3s ease;
+  nav ul li {
+    margin: 10px 0;
+  }
+}
 
-    &[data-theme="dark"] {
-      background: var(--toggle-thumb-dark);
-      transform: translateX(30px);
-    }
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 14px;
   }
 
-  &[data-theme="dark"]::before {
-    transform: translateX(30px);
+  nav ul li a {
+    padding: 8px 12px;
+  }
+
+  main {
+    padding: 10px;
   }
 }

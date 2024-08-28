@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./routes/Home";
 import MealPlan from "./routes/MealPlan/mealPlan";
 import Layout from "./components/Layout";
 import "./styles/main.scss";
@@ -10,8 +9,7 @@ function App() {
     <Router>
       <Layout>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/meal-plan" element={<MealPlan />} />
+          <Route path="/" element={<MealPlan />} />
         </Routes>
       </Layout>
     </Router>

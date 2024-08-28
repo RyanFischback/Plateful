@@ -1,16 +1,16 @@
 .footer {
-  background-color: var(--footer-bg);
+  background-color: var(--footer-background);
   color: var(--footer-text);
   padding: 1rem;
   text-align: center;
-  border-top: 1px solid var(--footer-border);
+  border-top: 1px solid var(--border-color);
 
   .footer-content {
     margin: 0 auto;
   }
 
   .footer-link {
-    color: var(--footer-link);
+    color: var(--text-color);
     text-decoration: none;
     font-weight: bold;
     margin-left: 0.5rem;

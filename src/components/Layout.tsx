@@ -21,18 +21,16 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/meal-plan">Meal Plan</Link>
+              <Link to="/">Meal Plan</Link>
             </li>
           </ul>
         </nav>
-        <div
-          className="theme-toggle"
-          data-theme={darkMode ? "dark" : "light"}
-          onClick={handleToggle}
-        ></div>
+        <div className="slider-container">
+          <label className="switch">
+            <input type="checkbox" checked={darkMode} onChange={handleToggle} />
+            <span className="slider"></span>
+          </label>
+        </div>
       </header>
       <main className="content">{children}</main>
       <Footer />

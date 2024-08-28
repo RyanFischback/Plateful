@@ -1,81 +1,36 @@
-// Base color variables
 :root {
-  // Primary colors
-  --primary-color: #007bff;
-  --primary-dark-color: #0056b3;
-
-  // Background colors
-  --background-light: #ffffff;
-  --background-dark: #121212;
-
-  // Text colors
-  --text-color-light: #000000;
+  --background-color-light: #f4f4f4;
+  --background-color-dark: #2c2c2c;
+  --text-color-light: #333333;
   --text-color-dark: #ffffff;
-
-  // Toggle switch colors
-  --toggle-bg-light: #ccc;
-  --toggle-thumb-light: #ffffff;
-  --toggle-bg-dark: #333;
-  --toggle-thumb-dark: #000000;
-
-  // Button colors
-  --button-bg: #007bff;
-  --button-bg-hover: #0056b3;
-  --button-bg-disabled: #ccc;
-  --button-text: #ffffff;
-
-  // Navbar colors
-  --navbar-bg: linear-gradient(
-    135deg,
-    var(--primary-color),
-    var(--primary-dark-color)
-  );
-  --navbar-text: #ffffff;
-
-  // Form colors
-  --form-bg: rgba(255, 255, 255, 0.9);
-  --form-border: #ddd;
-  --form-error-bg: #fdd;
-  --form-error-text: #f00;
+  --primary-color: #2261a0;
+  --secondary-color: #00bfae;
+  --accent-color: #ff5722;
+  --button-background: #ff5722;
+  --button-background-hover: #e64a19;
+  --header-background: #004d99;
+  --footer-background: #2261a0;
+  --section-background: #ffffff;
+  --navbar-background-light: #ffffff;
+  --navbar-background-dark: #333333;
+  --border-radius: 8px;
+  --border-color: #ffffff;
 }
 
-// Dark mode color variables
-[data-theme="dark"] {
-  // Primary colors
-  --primary-color: #007bff;
-  --primary-dark-color: #0056b3;
+body.light-mode {
+  --background-color: var(--background-color-light);
+  --text-color: var(--text-color-light);
+  --header-background: var(--header-background);
+  --footer-background: var(--footer-background);
+  --section-background: var(--section-background);
+  --navbar-background: var(--navbar-background-light);
+}
 
-  // Background colors
-  --background-light: #121212;
-  --background-dark: #ffffff;
-
-  // Text colors
-  --text-color-light: #ffffff;
-  --text-color-dark: #000000;
-
-  // Toggle switch colors
-  --toggle-bg-light: #333;
-  --toggle-thumb-light: #000000;
-  --toggle-bg-dark: #ccc;
-  --toggle-thumb-dark: #ffffff;
-
-  // Button colors
-  --button-bg: #007bff;
-  --button-bg-hover: #0056b3;
-  --button-bg-disabled: #ccc;
-  --button-text: #ffffff;
-
-  // Navbar colors
-  --navbar-bg: linear-gradient(
-    135deg,
-    var(--primary-color),
-    var(--primary-dark-color)
-  );
-  --navbar-text: #ffffff;
-
-  // Form colors
-  --form-bg: rgba(255, 255, 255, 0.9);
-  --form-border: #ddd;
-  --form-error-bg: #fdd;
-  --form-error-text: #f00;
+body.dark-mode {
+  --background-color: var(--background-color-dark);
+  --text-color: var(--text-color-dark);
+  --header-background: var(--header-background);
+  --footer-background: var(--footer-background);
+  --section-background: #333333;
+  --navbar-background: var(--navbar-background-dark);
 }
